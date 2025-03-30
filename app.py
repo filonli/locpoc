@@ -70,7 +70,7 @@ for row in rows.data:
     
     if row["sender"] != last_n:
         
-        if name == "":
+        if row["sender"] == "":
             c[0].badge("[unnamed]: ")
         else:
             c[0].badge(row["sender"]+": ")
