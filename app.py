@@ -22,10 +22,13 @@ async def subscribe_to_changes():
     """Subscribes to changes in the Supabase table and updates Streamlit."""
 
     try:
-        def handle_event(event):
-            st.rerun()
+        # Correct way to subscribe to changes using the RealtimeClient
+        realtime_client = supabase.realtime.channel(f"realtime:{"messages"}")
 
-        supabase.table("messages").on("*", handle_event).subscribe()
+        def handle_event(event):
+            st.experimental_rerun()
+
+        realtime_client.on("UPDATE", handle_event).on("INSERT", handle_event).on("DELETE", handle_event).subscribe()
 
         while True:
             await asyncio.sleep(0.2)
