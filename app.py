@@ -3,6 +3,7 @@ import array
 import time
 from supabase import create_client, Client
 import datetime
+import asyncio
 
 # Initialize connection.
 # Uses st.cache_resource to only run once.
@@ -23,6 +24,21 @@ def run_query():
 
 rows = run_query()
 
+async def subscribe_to_changes():
+    """Subscribes to changes in the Supabase table and updates Streamlit."""
+
+    try:
+        def handle_event(event):
+            rows = run_query()
+
+        supabase.table("messages").on("*", handle_event).subscribe()
+
+        while True:
+            await asyncio.sleep(1)
+
+    except Exception as e:
+        st.error(f"Error subscribing to changes: {e}")
+
 
 st.set_page_config(page_title="locpoc")
 
@@ -35,15 +51,15 @@ with st.sidebar:
     
     name = st.text_input("write your name")
 
-    refresh_time = st.select_slider(
-        "Refresh rate",
-        options=[
-            0.5,
-            1,
-            2,
-            5
-        ],
-    )
+    #refresh_time = st.select_slider(
+    #    "Refresh rate",
+    #    options=[
+    #        0.5,
+    #        1,
+    #        2,
+    #        5
+    #    ],
+    #)
 
 messages = st.container()
 
@@ -73,5 +89,5 @@ if prompt := st.chat_input("Say something"):
 
 
 
-time.sleep(refresh_time)
-st.rerun()
+#time.sleep(refresh_time)
+#st.rerun()
