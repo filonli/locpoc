@@ -45,7 +45,8 @@ st.set_page_config(page_title="locpoc")
 
 
 #with st.sidebar:
-
+st.title("locpoc")
+st.caption("anonymous public messanger")
 
 
 
@@ -60,7 +61,7 @@ st.set_page_config(page_title="locpoc")
     #    ],
     #)
 
-messages = st.container()
+messages = st.container(height=500)
 
 last_n = ""
 for row in rows.data:
@@ -89,8 +90,7 @@ if prompt := st.chat_input("Say something"):
     c[1].write(prompt)
 
     
-st.title("locpoc")
-st.caption("anonymous public messanger")
+
 
 
 
