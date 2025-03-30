@@ -44,12 +44,12 @@ st.set_page_config(page_title="locpoc")
 
 
 
-with st.sidebar:
-    st.title("locpoc")
-    st.caption("anonymous public messanger")
-    
-    
-    name = st.text_input("write your name")
+#with st.sidebar:
+st.title("locpoc")
+st.caption("anonymous public messanger")
+
+
+name = st.text_input("write your name")
 
     #refresh_time = st.select_slider(
     #    "Refresh rate",
