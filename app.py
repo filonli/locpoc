@@ -44,5 +44,5 @@ for row in rows.data:
     
     messages.chat_message(row["sender"]+":").write(row["sender"]+": "+row["message"])
 
-time.sleep(3)
+time.sleep(0.5)
 st.rerun()
