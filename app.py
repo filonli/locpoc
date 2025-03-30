@@ -12,8 +12,7 @@ def init_connection():
     return create_client(url, key)
 
 
-base = init_connection()
-
+base:Client = init_connection()
 
 # Perform query.
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
