@@ -32,7 +32,12 @@ st.caption("anonymous public messanger")
 
 name = st.text_input("write your name")
 
-messages = st.container(height=300)
+messages = st.container(height=600)
+
+for row in rows.data:
+    
+    messages.chat_message(row["sender"]+":").write(row["sender"]+": "+row["message"])
+
 if prompt := st.chat_input("Say something"):
     d = {"sender":name,"message":prompt}
     supabase.table("messages").insert(d).execute()
@@ -40,9 +45,6 @@ if prompt := st.chat_input("Say something"):
     
 
 
-for row in rows.data:
-    
-    messages.chat_message(row["sender"]+":").write(row["sender"]+": "+row["message"])
 
 refresh_time = st.select_slider(
     "Refresh rate",
