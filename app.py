@@ -29,7 +29,7 @@ async def subscribe_to_changes():
 
     try:
         def handle_event(event):
-            rows = run_query()
+            st.rerun
 
         supabase.table("messages").on("*", handle_event).subscribe()
 
