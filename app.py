@@ -32,6 +32,16 @@ st.caption("anonymous public messanger")
 
 name = st.text_input("write your name")
 
+refresh_time = st.select_slider(
+    "Refresh rate",
+    options=[
+        0.5,
+        1,
+        2,
+        5
+    ],
+)
+
 messages = st.container(height=600)
 
 for row in rows.data:
@@ -46,14 +56,6 @@ if prompt := st.chat_input("Say something"):
 
 
 
-refresh_time = st.select_slider(
-    "Refresh rate",
-    options=[
-        0.5,
-        1,
-        2,
-        5
-    ],
-)
+
 time.sleep(refresh_time)
 st.rerun()
