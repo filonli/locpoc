@@ -51,6 +51,6 @@ def write_msg():
 draw_msgs()
 write_msg()
 
-if st.button("update"):
-    st.rerun()
+time.sleep(0.2)
+st.rerun()
 
