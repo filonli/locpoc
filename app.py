@@ -86,10 +86,10 @@ if prompt := st.chat_input("Say something"):
     supabase.table("messages").insert(d).execute()
     
 
-    c = messages.columns(2)
+    #c = messages.columns(2)
     #msg_c.chat_message('human')
-    c[0].caption(name)
-    c[1].write(prompt)
+    #c[0].caption(name)
+    #c[1].write(prompt)
 
     
 
