@@ -52,7 +52,7 @@ for row in rows.data:
     c = messages.columns(2)
     #msg_c.chat_message(row["sender"]+":")
     
-    if row["sender"]== last_n:
+    if row["sender"] != last_n:
         c[0].badge(row["sender"]+": ")
     
     c[1].write(row["message"])
