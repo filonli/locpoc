@@ -27,7 +27,7 @@ rows = run_query()
 st.set_page_config(page_title="locpoc")
 
 st.title("locpoc")
-st.markdown("anonymous public messanger")
+st.caption("anonymous public messanger")
 
 
 name = st.text_input("write your name")
