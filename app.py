@@ -44,5 +44,14 @@ for row in rows.data:
     
     messages.chat_message(row["sender"]+":").write(row["sender"]+": "+row["message"])
 
-time.sleep(0.5)
+refresh_time = st.select_slider(
+    "Refresh rate",
+    options=[
+        0.5,
+        1,
+        2,
+        5
+    ],
+)
+time.sleep(refresh_time)
 st.rerun()
