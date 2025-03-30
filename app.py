@@ -1,17 +1,18 @@
 import streamlit as st
 import array
 import time
-from supabase import create_client, Client
+from supabase import create_client, Client,create_async_client
 import datetime
 import asyncio
 
+st.set_page_config(page_title="locpoc")
 # Initialize connection.
 # Uses st.cache_resource to only run once.
 @st.cache_resource
 def init_connection():
     url = st.secrets["SUP_URL"]
     key = st.secrets["SUP_KEY"]
-    return Client(url, key)
+    return create_async_client(url, key)
 
 
 supabase:Client = init_connection()
@@ -36,7 +37,6 @@ async def subscribe_to_changes():
     except Exception as e:
         st.error(f"Error subscribing to changes: {e}")
 
-st.set_page_config(page_title="locpoc")
 
 
 
