@@ -49,9 +49,9 @@ messages = st.container()
 
 for row in rows.data:
     msg_c = messages.container()
-    msg_c.chat_message(row["sender"]+":")
-    msg_c.badge(row["sender"]+": ")
-    msg_c.write(row["message"])
+    #msg_c.chat_message(row["sender"]+":")
+    msg_c.badge(row["sender"]+": ").write(row["message"])
+    
 
 
 if prompt := st.chat_input("Say something"):
@@ -59,9 +59,9 @@ if prompt := st.chat_input("Say something"):
     supabase.table("messages").insert(d).execute()
 
     msg_c = messages.container()
-    msg_c.chat_message('human')
-    msg_c.caption(name)
-    msg_c.write(prompt)
+    #msg_c.chat_message('human')
+    msg_c.caption(name).write(prompt)
+    
 
     
 
