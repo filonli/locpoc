@@ -3,7 +3,7 @@ import array
 from supabase import create_client, Client
 import datetime
 
-sup:Client = create_client(SUPABASE_URL,SUPABASE_KEY)
+sup:Client = create_client(st.secrets["SUPABASE_URL"],st.secrets["SUPABASE_KEY"])
 
 
 def insert_message(sender, message):
