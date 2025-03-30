@@ -75,7 +75,7 @@ def write_msg():
 
 async def main():
     await draw_msgs()
-    asyncio.create_task(subscribe_to_changes())
+    await subscribe_to_changes()
 
     write_msg()
 
