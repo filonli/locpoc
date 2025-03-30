@@ -36,6 +36,8 @@ if prompt := st.chat_input("Say something"):
     d = {"sender":name,"message":prompt}
     supabase.table("messages").insert(d).execute()
 
+    rows = run_query()
+
 
 for row in rows.data:
     
