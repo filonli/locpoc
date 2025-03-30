@@ -19,7 +19,7 @@ supabase:Client = init_connection()
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
 #@st.cache_вфеф(ttl=20)
 def run_query():
-    return supabase.table("messages").select("*").execute()
+    return supabase.table("messages").select("*").order("created_at").execute()
 
 rows = run_query()
 
