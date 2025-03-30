@@ -45,8 +45,7 @@ st.set_page_config(page_title="locpoc")
 
 
 #with st.sidebar:
-st.title("locpoc")
-st.caption("anonymous public messanger")
+
 
 
 
@@ -90,7 +89,8 @@ if prompt := st.chat_input("Say something"):
     c[1].write(prompt)
 
     
-
+st.title("locpoc")
+st.caption("anonymous public messanger")
 
 
 
