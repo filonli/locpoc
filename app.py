@@ -29,18 +29,18 @@ st.set_page_config(page_title="locpoc")
 st.title("locpoc")
 st.caption("anonymous public messanger")
 
+with st.sidebar:
+    name = st.text_input("write your name")
 
-name = st.text_input("write your name")
-
-refresh_time = st.select_slider(
-    "Refresh rate",
-    options=[
-        0.5,
-        1,
-        2,
-        5
-    ],
-)
+    refresh_time = st.select_slider(
+        "Refresh rate",
+        options=[
+            0.5,
+            1,
+            2,
+            5
+        ],
+    )
 
 messages = st.container(height=600)
 
