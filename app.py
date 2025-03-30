@@ -51,10 +51,11 @@ for row in rows.data:
     
     messages.chat_message(row["sender"]+":").write(row["sender"]+": "+row["message"])
 
+st.write(name)
 if prompt := st.chat_input("Say something"):
     d = {"sender":name,"message":prompt}
     supabase.table("messages").insert(d).execute()
-    messages.chat_message(name+":").write(name+": "+prompt)
+    messages.chat_message('human').write(name+": "+prompt)
 
     
 
