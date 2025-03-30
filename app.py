@@ -13,7 +13,7 @@ def insert_message(sender, message):
 
 def fetch_messages():
     """Fetches all messages from the Supabase database."""
-    data, count = sup.table("messages").select("*").order("timestamp").execute()
+    data, count = sup.table("messages").select("*").order("created_at").execute()
     return data, count
 
 
