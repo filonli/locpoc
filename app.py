@@ -47,7 +47,7 @@ with st.sidebar:
 
 messages = st.container()
 
-last_n = ""
+last_n = "[noname]"
 for row in rows.data:
     c = messages.columns(2)
     #msg_c.chat_message(row["sender"]+":")
