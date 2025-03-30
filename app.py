@@ -45,13 +45,13 @@ with st.sidebar:
         ],
     )
 
-messages = st.container(height=600)
+messages = st.container()
 
 for row in rows.data:
     
     messages.chat_message(row["sender"]+":").write(row["sender"]+": "+row["message"])
 
-st.write(name)
+st.badge(name)
 if prompt := st.chat_input("Say something"):
     d = {"sender":name,"message":prompt}
     supabase.table("messages").insert(d).execute()
