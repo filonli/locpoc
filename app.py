@@ -29,12 +29,12 @@ async def subscribe_to_changes():
 
     try:
         def handle_event(event):
-            st.rerun
+            st.rerun()
 
         supabase.table("messages").on("*", handle_event).subscribe()
 
         while True:
-            await asyncio.sleep(1)
+            await asyncio.sleep(0.2)
 
     except Exception as e:
         st.error(f"Error subscribing to changes: {e}")
@@ -83,6 +83,7 @@ name = st.text_input("nickname",placeholder ="write your name")
 if prompt := st.chat_input("Say something"):
     d = {"sender":name,"message":prompt}
     supabase.table("messages").insert(d).execute()
+    
 
     c = messages.columns(2)
     #msg_c.chat_message('human')
