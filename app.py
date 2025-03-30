@@ -4,7 +4,7 @@ import array
 st.set_page_config(page_title="locpoc")
 
 st.title("locpoc")
-st.markdown("annonymous public messanger")
+st.markdown("anonymous public messanger")
 
 sta = st.session_state
 
