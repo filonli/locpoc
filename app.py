@@ -26,10 +26,13 @@ rows = run_query()
 
 st.set_page_config(page_title="locpoc")
 
-st.title("locpoc")
-st.caption("anonymous public messanger")
+
 
 with st.sidebar:
+    st.title("locpoc")
+    st.caption("anonymous public messanger")
+    
+    
     name = st.text_input("write your name")
 
     refresh_time = st.select_slider(
