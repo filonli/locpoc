@@ -49,7 +49,7 @@ st.title("locpoc")
 st.caption("anonymous public messanger")
 
 
-name = st.text_input("write your name")
+
 
     #refresh_time = st.select_slider(
     #    "Refresh rate",
@@ -79,7 +79,7 @@ for row in rows.data:
     c[1].write(row["message"])
     last_n = row["sender"]
 
-
+name = st.text_input("write your name")
 if prompt := st.chat_input("Say something"):
     d = {"sender":name,"message":prompt}
     supabase.table("messages").insert(d).execute()
