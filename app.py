@@ -11,7 +11,7 @@ import asyncio
 def init_connection():
     url = st.secrets["SUP_URL"]
     key = st.secrets["SUP_KEY"]
-    return create_client(url, key)
+    return Client(url, key)
 
 
 supabase:Client = init_connection()
