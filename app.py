@@ -39,7 +39,7 @@ async def subscribe_to_changes():
     except Exception as e:
         st.error(f"Error subscribing to changes: {e}")
 
-subscribe_to_changes()
+asyncio.create_task(subscribe_to_changes())
 
 st.set_page_config(page_title="locpoc")
 
