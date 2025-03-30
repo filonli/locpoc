@@ -1,5 +1,6 @@
 import streamlit as st
 import array
+import time
 from supabase import create_client, Client
 import datetime
 
@@ -16,7 +17,7 @@ supabase:Client = init_connection()
 
 # Perform query.
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
-@st.cache_resource(ttl=20)
+#@st.cache_вфеф(ttl=20)
 def run_query():
     return supabase.table("messages").select("*").execute()
 
@@ -36,9 +37,12 @@ if prompt := st.chat_input("Say something"):
     d = {"sender":name,"message":prompt}
     supabase.table("messages").insert(d).execute()
 
-    rows = run_query()
+    
 
 
 for row in rows.data:
     
     messages.chat_message(row["sender"]+":").write(row["sender"]+": "+row["message"])
+
+time.sleep(3)
+st.rerun()
