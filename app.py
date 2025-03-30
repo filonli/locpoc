@@ -47,7 +47,7 @@ st.caption("anonymous public messanger")
 messages = st.container(height=500)
 
 async def draw_msgs():
-    rows = supabase.table("messages").select("*").order("created_at").execute()
+    rows = await supabase.table("messages").select("*").order("created_at").execute()
 
     last_n = ""
     for row in rows.data:
