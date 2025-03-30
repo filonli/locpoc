@@ -47,7 +47,10 @@ def write_msg():
     if prompt := st.chat_input("Say something"):
         d = {"sender":name,"message":prompt}
         supabase.table("messages").insert(d).execute()
-    
+
+draw_msgs()
+write_msg()
+
 if st.button("update"):
     st.rerun()
 
