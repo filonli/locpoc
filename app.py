@@ -54,6 +54,7 @@ for row in rows.data:
 if prompt := st.chat_input("Say something"):
     d = {"sender":name,"message":prompt}
     supabase.table("messages").insert(d).execute()
+    messages.chat_message(name+":").write(name+": "+prompt)
 
     
 
