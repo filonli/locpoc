@@ -79,7 +79,7 @@ for row in rows.data:
     c[1].write(row["message"])
     last_n = row["sender"]
 
-name = st.text_input(placeholder="write your name")
+name = st.text_input("nickname",placeholder ="write your name")
 if prompt := st.chat_input("Say something"):
     d = {"sender":name,"message":prompt}
     supabase.table("messages").insert(d).execute()
