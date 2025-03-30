@@ -34,7 +34,7 @@ name = st.text_input("write your name")
 messages = st.container(height=300)
 if prompt := st.chat_input("Say something"):
     d = {"sender":name,"message":prompt}
-    response = supabase.table["messages"].insert([d]).execute()
+    supabase.table["messages"].insert([d]).execute()
 
 
 for row in rows.data:
