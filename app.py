@@ -3,18 +3,23 @@ import array
 from supabase import create_client, Client
 import datetime
 
-sup:Client = create_client(st.secrets["SUP_URL"],st.secrets["SUP_KEY"])
+# Initialize connection.
+# Uses st.cache_resource to only run once.
+@st.cache_resource
+def init_connection():
+    url = st.secrets["SUP_URL"]
+    key = st.secrets["SUP_KEY"]
+    return create_client(url, key)
 
+supabase = init_connection()
 
-def insert_message(sender, message):
-    """Inserts a message into the Supabase database."""
-    data, count = sup.table("messages").insert({"sender": sender, "message": message}).execute()
-    return data, count
+# Perform query.
+# Uses st.cache_data to only rerun when the query changes or after 10 min.
+@st.cache_data(ttl=600)
+def run_query():
+    return supabase.table("messages").select("*").order("created_at").execute()
 
-def fetch_messages():
-    """Fetches all messages from the Supabase database."""
-    data, count = sup.table("messages").select("*").order("created_at").execute()
-    return data, count
+rows = run_query()
 
 
 st.set_page_config(page_title="locpoc")
@@ -27,17 +32,10 @@ name = st.text_input("write your name")
 
 messages = st.container(height=300)
 if prompt := st.chat_input("Say something"):
-    insert_message(name,prompt)
+    data = {"sender":name,"message":prompt}
+    response = supabase.table["messages"].insert(data).execute()
 
- # Fetch and display messages
-data, count = fetch_messages()
-if data and data.data:
-    for message_data in data.data:
-        timestamp = datetime.datetime.fromisoformat(message_data["timestamp"].replace('Z', '+00:00'))
-        st.write(f"**{message_data['sender']}** ({timestamp.strftime('%Y-%m-%d %H:%M:%S')}): {message_data['message']}")
-else:
-    st.write("No messages yet.")
 
-for m in sta.chat:
+for row in rows.data:
     
-    messages.chat_message(m["name"]+":").write(m["name"]+": "+m["text"])
+    messages.chat_message(row["sender"]+":").write(row["sender"]+": "+row["message"])
