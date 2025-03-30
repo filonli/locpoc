@@ -48,20 +48,21 @@ with st.sidebar:
 messages = st.container()
 
 for row in rows.data:
-    msg_c = messages.container()
+    c = messages.columns(2)
     #msg_c.chat_message(row["sender"]+":")
-    msg_c.badge(row["sender"]+": ").write(row["message"])
     
+    c[0].badge(row["sender"]+": ")
+    c[1].write(row["message"])
 
 
 if prompt := st.chat_input("Say something"):
     d = {"sender":name,"message":prompt}
     supabase.table("messages").insert(d).execute()
 
-    msg_c = messages.container()
+    c = messages.columns(2)
     #msg_c.chat_message('human')
-    msg_c.caption(name).write(prompt)
-    
+    c[0].caption(name)
+    c[1].write(prompt)
 
     
 
